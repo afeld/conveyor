@@ -1,5 +1,8 @@
+/*jshint node:true */
+'use strict';
+
 var http = require('http'),
-  Streamer = require('./json_streamer');
+  Streamer = require('../lib/streamer');
 
 
 http.createServer(function(req, res){
