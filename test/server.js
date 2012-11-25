@@ -13,26 +13,21 @@ app.get('/count', function(req, res){
     i = 0;
 
   var interval = setInterval(function(){
-    if (i < count){
+    i++;
+    if (i <= count){
       conveyor.write(i);
     } else {
       conveyor.end();
     }
-
-    i++;
   }, 10);
 });
 
 
-var port;
 if (require.main === module){
   // run directly
   // open http://localhost:8000/test/index.html
   app.use(express['static'](__dirname + '/../'));
-  port = 8000;
-} else {
-  port = 8001;
 }
 
-app.listen(port);
-console.log('Server running at http://127.0.0.1:' + port);
+app.listen(8000);
+console.log('Server running at http://127.0.0.1:8000');
