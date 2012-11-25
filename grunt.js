@@ -1,6 +1,12 @@
+/*jshint node:true */
 /*global module:false*/
+'use strict';
+
 module.exports = function(grunt) {
   var defaults = 'lint mocha mochaTest';
+
+  // set up test server
+  require('./test/server.js');
 
   // Project configuration.
   grunt.initConfig({
@@ -19,10 +25,10 @@ module.exports = function(grunt) {
       }
     },
     lint: {
-      files: ['*.js', 'lib/**/*.js', 'test/**/*.js']
+      files: ['*.js', 'lib/**/*.js', 'test/*.js']
     },
     mocha: {
-      index: ['test.html']
+      index: ['test/index.html']
     },
     mochaTest: {
       files: ['test/server_test.js']
