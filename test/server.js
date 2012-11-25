@@ -14,7 +14,7 @@ app.get('/count', function(req, res){
 
   var interval = setInterval(function(){
     if (i < count){
-      conveyor.write({i: i});
+      conveyor.write(i);
     } else {
       conveyor.end();
     }
@@ -23,5 +23,16 @@ app.get('/count', function(req, res){
   }, 100);
 });
 
-app.listen(8000);
-console.log('Server running at http://127.0.0.1:8000/');
+
+var port;
+if (require.main === module){
+  // run directly
+  // open http://localhost:8000/test/index.html
+  app.use(express['static'](__dirname + '/../'));
+  port = 8000;
+} else {
+  port = 8001;
+}
+
+app.listen(port);
+console.log('Server running at http://127.0.0.1:' + port);
