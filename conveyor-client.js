@@ -4,36 +4,31 @@
 */
 /*jshint browser:true */
 /*global console:true */
-window.Conveyor = function(url){
-  if (!url){
-    throw new Error('requires a URL');
-  }
+window.Conveyor = {
+  get: function(opts){
+    if (!opts.url){
+      throw new Error('requires a URL');
+    }
 
-  this.url = url;
-  this.offset = 0;
+    var offset = 0;
 
-  var xhr = new XMLHttpRequest(); // $.ajaxSetup().xhr();
-  this.xhr = xhr;
+    var xhr = new XMLHttpRequest(); // $.ajaxSetup().xhr();
+    xhr.multipart = true;
+    xhr.open('GET', opts.url, true);
 
-  xhr.multipart = true;
-  xhr.open('GET', url, true);
-
-  // bind context
-  var self = this;
-  xhr.onreadystatechange = function(){
-    self._onChunk();
-  };
-  xhr.send(null);
-};
-
-window.Conveyor.prototype._onChunk = function(){
-  var xhr = this.xhr;
-  switch (xhr.readyState){
-    case xhr.LOADING: // 3
-      console.log(xhr.responseText);
-      break;
-    case xhr.DONE: // 4
-      // nada
-      break;
+    // only available in IE 7+ - http://msdn.microsoft.com/en-us/library/ie/dd576252(v=vs.85).aspx
+    xhr.onreadystatechange = function(){
+      switch (xhr.readyState){
+        case 3: // LOADING
+          console.log(xhr.responseText);
+          break;
+        case 4: // DONE
+          if (opts.done){
+            opts.done.call(opts.scope || this);
+          }
+          break;
+      }
+    };
+    xhr.send(null);
   }
 };

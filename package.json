@@ -18,6 +18,7 @@
   "dependencies": {},
   "devDependencies": {
     "expect.js": "0.1.x",
+    "express": "3.0.x",
     "grunt": "0.3.x",
     "grunt-mocha": "0.1.x",
     "grunt-mocha-test": "0.0.1",

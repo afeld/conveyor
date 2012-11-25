@@ -1,8 +1,10 @@
 /*jshint browser:true*/
-/*global describe, before, beforeEach, after, $, it, sinon, expect */
+/*global describe, it, expect, Conveyor */
 describe('Conveyor client', function(){
-  it('should pass', function(){
-    expect(true).to.be.ok();
-    // var stream = new Conveyor('http://localhost:8000');
+  it("should call 'done'", function(done){
+    Conveyor.get({
+      url: '/count?n=3',
+      done: done
+    });
   });
 });
