@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "NodeJS module for streaming JSON responses",
   "author": "Aidan Feldman",
-  "main": "lib/streamer.js",
+  "main": "lib/conveyor.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
@@ -15,6 +15,7 @@
     "response"
   ],
   "license": "MIT",
+  "dependencies": {},
   "devDependencies": {
     "expect.js": "0.1.x",
     "grunt": "0.3.x",

@@ -2,7 +2,7 @@
 'use strict';
 
 var http = require('http'),
-  Streamer = require('../lib/streamer');
+  Streamer = require('../lib/conveyor');
 
 
 http.createServer(function(req, res){
