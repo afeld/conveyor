@@ -20,7 +20,7 @@ app.get('/count', function(req, res){
     }
 
     i++;
-  }, 100);
+  }, 10);
 });
 
 
