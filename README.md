@@ -2,7 +2,7 @@
 
 ![Conveyor belt](http://afeld.github.com/conveyor/belt-conveyor.png)
 
-A NodeJS module and small [browser library](https://github.com/afeld/conveyor/blob/master/conveyor-client.js) for streaming JSON responses via AJAX.
+A NodeJS module and small [browser library](https://github.com/afeld/conveyor/blob/master/conveyor-client.js) for streaming JSON responses via AJAX.  Uses long-lived requests to allow for incremental responses from your server, all in the comfort of REST.
 
 Suppose you have a search box with typeahead, where the results can come from multiple sources.  You want to return the results to the client as quickly as possible.  With non-streaming responses, you'd need to wait until *all* subsequent requests finish before you could send anything back to the client.
 
