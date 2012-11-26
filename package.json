@@ -2,16 +2,25 @@
   "name": "conveyor",
   "version": "0.0.0",
   "description": "NodeJS module for streaming JSON responses",
-  "author": "Aidan Feldman",
+  "author": {
+    "name": "Aidan Feldman",
+    "email": "aidan.feldman@gmail.com",
+    "url": "http://afeld.me"
+  },
   "main": "lib/conveyor.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "test": "grunt"
   },
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/afeld/conveyor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/afeld/conveyor/issues"
+  },
   "keywords": [
     "stream",
-    "JSON",
+    "json",
     "response"
   ],
   "license": "MIT",
