@@ -1,9 +1,10 @@
-/*
+/**
   Conveyor - client library
   by Aidan Feldman
 */
 /*jshint browser:true */
 (function(){
+  'use strict';
   var R_STRIP = /^\s+|^\s*(\[|,)\s*|\s*(,|\])\s*$|\s+$/g;
 
 
