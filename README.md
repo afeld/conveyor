@@ -79,11 +79,15 @@ app.get('/api/search', function(req, res){
 
 ### new Conveyor(response)
 
-Create a new Conveyor responder.  Requires Node `http.ServerResponse` to be passed to the constructor.
+Create a new Conveyor responder.
+
+* `response` {http.ServerResponse} (required)
 
 ### conveyor.write(obj)
 
 Send JSON object to the client.
+
+* `obj` {Mixed} (required) - Any object type that can be serialized via `JSON.stringify()`.
 
 ### conveyor.end()
 
@@ -97,10 +101,10 @@ Compatible with IE 7+ and all modern browsers.
 
 Create a new streaming JSON request, where `options` is an `Object` with the following properties:
 
-* {String} `url` (required) Streaming JSON endpoint.
-* {Function} `chunk` - Callback that's fired for every object sent by the server.
-* {Function} `done` - Callback that's fired when the request is complete, successfully or not.
-* {Object} `scope` - The context in which to execute the callbacks.
+* `url` {String} (required) Streaming JSON endpoint.
+* `chunk` {Function} - Callback that's fired for every object sent by the server.
+* `done` {Function} - Callback that's fired when the request is complete, successfully or not.
+* `scope` {Object} - The context in which to execute the callbacks.
 
 ### conveyor.abort()
 
