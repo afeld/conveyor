@@ -37,6 +37,16 @@ app.get('/api/search', function(req, res){
     res.json(results);
   });
 });
+
+
+// response (all at once)
+
+// 1. wait
+// 2.
+[
+  { /* db1 obj */ },
+  { /* db2 obj */ }
+]
 ```
 
 Now, modified to use Conveyor:
@@ -78,6 +88,17 @@ app.get('/api/search', function(req, res){
     conveyor.end();
   });
 });
+
+
+// response
+// 1.
+[
+// 2. as soon as db2 responds
+  { /* db2 obj */ }
+// 3. as soon as db1 responds
+  ,{ /* db1 obj */ }
+// 4. on end()
+]
 ```
 
 ## Server Usage
