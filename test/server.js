@@ -7,6 +7,11 @@ var express = require('express'),
 
 var app = express();
 
+app.use(function(req, res, next){
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  next();
+});
+
 app.get('/count', function(req, res){
   var count = req.query.n,
     conveyor = new Conveyor(res),
@@ -25,8 +30,8 @@ app.get('/count', function(req, res){
 
 if (require.main === module){
   // run directly
-  // open http://localhost:8000/test/index.html
   app.use(express['static'](__dirname + '/../'));
+  console.log('open at http://localhost:8000/test/index.html');
 }
 
 app.listen(8000);
