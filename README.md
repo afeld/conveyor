@@ -4,6 +4,8 @@
 
 A NodeJS module and small [browser library](https://github.com/afeld/conveyor/blob/master/conveyor-client.js) for streaming JSON responses via AJAX.  Uses long-lived requests to allow for incremental responses from your server, all in the comfort of REST.
 
+## Example
+
 Suppose you have a search box with typeahead, where the results can come from multiple sources.  You want to return the results to the client as quickly as possible.  With non-streaming responses, you'd need to wait until *all* subsequent requests finish before you could send anything back to the client.
 
 ```javascript
@@ -42,6 +44,7 @@ app.get('/api/search', function(req, res){
 // response (all at once)
 
 // 1. wait
+// ...
 // 2. when both db1 AND db2 are done:
 [
   { /* db1 obj */ },
@@ -132,6 +135,10 @@ Create a new streaming JSON request, where `options` is an `Object` with the fol
 * `chunk` {Function} - Callback that's fired for every object sent by the server.
 * `done` {Function} - Callback that's fired when the request is complete, successfully or not.
 * `scope` {Object} - The context in which to execute the callbacks.
+
+### new Conveyor(options)
+
+Alternative way to initiate a request - same `options` as above.
 
 ### conveyor.abort()
 
