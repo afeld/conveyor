@@ -42,7 +42,7 @@ app.get('/api/search', function(req, res){
 // response (all at once)
 
 // 1. wait
-// 2.
+// 2. when both db1 AND db2 are done:
 [
   { /* db1 obj */ },
   { /* db2 obj */ }
@@ -91,13 +91,14 @@ app.get('/api/search', function(req, res){
 
 
 // response
-// 1.
+
+// 1. immediately:
 [
-// 2. as soon as db2 responds
+// 2. as soon as db2 responds:
   { /* db2 obj */ }
-// 3. as soon as db1 responds
+// 3. as soon as db1 responds:
   ,{ /* db1 obj */ }
-// 4. on end()
+// 4. on end():
 ]
 ```
 
