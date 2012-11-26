@@ -1,5 +1,9 @@
 # Conveyor
 
+![Conveyor belt](http://afeld.github.com/conveyor/belt-conveyor.png)
+
+Supports IE 7+ and all modern browsers.
+
 Reference:
 
 * http://www.ibm.com/developerworks/web/library/wa-reverseajax1/index.html

@@ -22,7 +22,7 @@
     this.active = true;
     this.offset = 0;
 
-    var xhr = new XMLHttpRequest(); // $.ajaxSetup().xhr();
+    var xhr = new XMLHttpRequest();
     this.xhr = xhr;
 
     xhr.multipart = true;
