@@ -6,6 +6,8 @@
 (function(){
   var R_STRIP = /^\s+|^\s*(\[|,)\s*|\s*(,|\])\s*$|\s+$/g;
 
+
+  // constructor
   var Conveyor = function(opts){
     var url = opts.url;
     if (!url){
@@ -16,6 +18,8 @@
     this.chunkCb = opts.chunk;
     this.doneCb = opts.done;
     this.scope = opts.scope || window;
+
+    this.active = true;
     this.offset = 0;
 
     var xhr = new XMLHttpRequest(); // $.ajaxSetup().xhr();
@@ -33,6 +37,21 @@
     xhr.send(null);
   };
 
+
+  // public instance methods
+
+  Conveyor.prototype.abort = function(){
+    this.active = false;
+
+    // only available in IE 7+ - http://msdn.microsoft.com/en-us/library/ie/ms535920(v=vs.85).aspx
+    if (this.xhr.abort){
+      this.xhr.abort();
+    }
+  };
+
+
+  // private instance methods
+
   Conveyor.prototype._onStateChange = function(){
     switch (this.xhr.readyState){
       case 3: // LOADING
@@ -48,7 +67,8 @@
     var fullText = this.xhr.responseText,
       newLength = fullText.length;
 
-    if (this.chunkCb){
+    // check for `active` in case the browser doesn't support XHR abort()-ing
+    if (this.active && this.chunkCb){
       var chunk = fullText.slice(this.offset);
       // remove leading/trailing Array brackets, commas and whitespace
       // TODO allow arrays to be sent
@@ -70,7 +90,8 @@
   };
 
 
-  // primary public method
+  // public class methods
+
   Conveyor.get = function(opts){
     return new Conveyor(opts);
   };
