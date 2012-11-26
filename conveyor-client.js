@@ -4,6 +4,8 @@
 */
 /*jshint browser:true */
 (function(){
+  var R_STRIP = /^\s+|^\s*(\[|,)\s*|\s*(,|\])\s*$|\s+$/g;
+
   var Conveyor = function(opts){
     var url = opts.url;
     if (!url){
@@ -44,16 +46,18 @@
 
   Conveyor.prototype._onChunk = function(){
     var fullText = this.xhr.responseText,
-      newLength = fullText.length,
-      chunk = fullText.slice(this.offset);
+      newLength = fullText.length;
 
-    // remove leading/trailing Array brackets and commas
-    // TODO allow arrays to be sent
-    chunk = chunk.replace(/^\s*(\[|,)?\s*/, '').replace(/\s*(,|\])?\s*$/, '');
+    if (this.chunkCb){
+      var chunk = fullText.slice(this.offset);
+      // remove leading/trailing Array brackets, commas and whitespace
+      // TODO allow arrays to be sent
+      chunk = chunk.replace(R_STRIP, '');
 
-    if (chunk && this.chunkCb){
-      var obj = JSON.parse(chunk);
-      this.chunkCb.call(this.scope, obj);
+      if (chunk){
+        var obj = JSON.parse(chunk);
+        this.chunkCb.call(this.scope, obj);
+      }
     }
 
     this.offset = newLength;
@@ -68,7 +72,7 @@
 
   // primary public method
   Conveyor.get = function(opts){
-    new Conveyor(opts);
+    return new Conveyor(opts);
   };
 
 
