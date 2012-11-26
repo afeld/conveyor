@@ -1,4 +1,4 @@
-# Conveyor [![Build Status](https://secure.travis-ci.org/afeld/conveyor.png?branch=master)](https://travis-ci.org/afeld/conveyor)
+# Conveyor
 
 ![Conveyor belt](http://afeld.github.com/conveyor/belt-conveyor.png)
 
@@ -8,7 +8,12 @@ Suppose you have a search box with typeahead, where the results can come from mu
 
 ```javascript
 // browser
-$.get('/api/search?q=beans', function(data){ ... });
+$.ajax({
+  url: '/api/search?q=beans',
+  success: function(data){
+    // only called after *all* data is received
+  }
+});
 
 
 // server
@@ -57,7 +62,7 @@ app.get('/api/search', function(req, res){
   async.parallel([
     function(callback){
       db1.find(term, function(err, data){
-        // sent immediately
+        // send immediately
         conveyor.write(data);
         callback(err);
       });
