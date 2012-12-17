@@ -59,7 +59,7 @@ Now, modified to use Conveyor:
 Conveyor.get({
   url: '/api/search?q=beans',
   chunk: function(obj){
-    // called for each object sent in the JSON Array response
+    // called for each object sent in the JSON response
   }
 });
 
@@ -87,7 +87,7 @@ app.get('/api/search', function(req, res){
       });
     }
   ], function(err){
-    // just need to let it know we're done
+    // let it know we're done
     conveyor.end();
   });
 });
@@ -148,7 +148,7 @@ Terminate the request.  The `done` callback will be fired immediately, but `chun
 
 * WebSockets are great for bi-directional communication like chat or multiplayer games, but they lack the clarity of REST.  If the example above were done via WebSockets, it would require extra care on the client to determine which search results belong to which queries.
 * Conveyor is normal JSON over normal REST, so your API can be consumed by any HTTP client, backwards-compatible.
-* WebSocket client libraries add lots of bulk to provide all the fallbacks... Socket.IO is ~45kb, plus ~176kb for the Flash transport.  The Conveyor client compresses to ~1.2kb.
+* WebSocket client libraries add lots of bulk to provide all the fallbacks... Socket.IO compressed is ~45kb, plus ~176kb for the Flash transport.  The Conveyor client is ~1.2kb.
 
 ## Reference
 
